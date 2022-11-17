@@ -5,9 +5,8 @@ import AuthForm from '../components/AuthFrom';
 import NavLinks from '../components/NavLinks';
 import { Context as AuthContext } from '../context/AuthContext';
 
-const SignupScreen = ({navigation}) => {
-    const { state, signup, tryLocalSignin } = useContext(AuthContext);
-    // const { state, signup, , tryLocalSignin } = useContext(AuthContext);
+const SignupScreen = ({ navigation }) => {
+    const { state, signup } = useContext(AuthContext);
 
     // useEffect(() => {
     //     tryLocalSignin();

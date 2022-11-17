@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { Text, Button, Input } from 'react-native-elements';
 import colors from '../globalStyles/GlobalColor';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -36,6 +36,7 @@ const AuthFrom = ({ headerText, errorMessage, onSubmit, submittButtonText }) => 
                 <Button title={submittButtonText} onPress={() => onSubmit({ email, password })} />
             </Spacer>
         </>
+
     )
 }
 
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
         marginTop: hp(3),
 
     },
+
 })
 
 export default AuthFrom;

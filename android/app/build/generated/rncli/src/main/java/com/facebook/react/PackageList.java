@@ -13,18 +13,16 @@ import java.util.ArrayList;
 
 // @react-native-async-storage/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-// react-native-gesture-handler
-import com.swmansion.gesturehandler.RNGestureHandlerPackage;
-// react-native-safe-area-context
-import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
-// react-native-screens
-import com.swmansion.rnscreens.RNScreensPackage;
 // @react-native-community/geolocation
 import com.reactnativecommunity.geolocation.GeolocationPackage;
 // @react-native-community/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
 // react-native-geolocation-service
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
+// react-native-gesture-handler
+import com.swmansion.gesturehandler.RNGestureHandlerPackage;
+// react-native-get-location
+import com.github.douglasjunior.reactNativeGetLocation.ReactNativeGetLocationPackage;
 // react-native-image-crop-picker
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 // react-native-image-picker
@@ -33,6 +31,10 @@ import com.imagepicker.ImagePickerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 // react-native-permissions
 import com.zoontek.rnpermissions.RNPermissionsPackage;
+// react-native-safe-area-context
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
+// react-native-screens
+import com.swmansion.rnscreens.RNScreensPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -81,16 +83,17 @@ public class PackageList {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
-      new RNGestureHandlerPackage(),
-      new SafeAreaContextPackage(),
-      new RNScreensPackage(),
       new GeolocationPackage(),
       new RNCMaskedViewPackage(),
       new RNFusedLocationPackage(),
+      new RNGestureHandlerPackage(),
+      new ReactNativeGetLocationPackage(),
       new PickerPackage(),
       new ImagePickerPackage(),
       new MapsPackage(),
       new RNPermissionsPackage(),
+      new SafeAreaContextPackage(),
+      new RNScreensPackage(),
       new VectorIconsPackage()
     ));
   }

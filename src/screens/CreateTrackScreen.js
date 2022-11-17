@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { View, PermissionsAndroid, Alert, requestLocationPermissionAsync, watchPositionAsync, Accuracy, StyleSheet } from 'react-native';
+import React, { useEffect, useContext } from 'react';
+import { View, PermissionsAndroid, StyleSheet, } from 'react-native';
 import { Text } from 'react-native-elements';
 import Map from '../components/Map';
+import Spacer from '../components/Spacer';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import Toast from 'react-native-simple-toast';
+// import GetLocation from 'react-native-get-location';
+import Geolocation from '@react-native-community/geolocation';
+import { Context as LocationContext } from '../context/LocationContext';
+
 
 const CreateTrackScreen = () => {
-    const [err, setErr] = useState(null);
+    const { addLocation } = useContext(LocationContext);
     const requestLocationPermission = async () => {
         try {
             const granted = await PermissionsAndroid.request(
                 PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                 {
-                    title: "Cool Track App Camera Permission",
+                    title: "Cool Track App Needs Location Permission",
                     message:
                         "Cool Track App needs access to your Location " +
                         "so you can create Tracks.",
@@ -19,39 +25,28 @@ const CreateTrackScreen = () => {
                     buttonNegative: "Cancel",
                     buttonPositive: "OK"
                 }
-            );
+            )
 
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                Alert.alert("Location Access")
+                Toast.showWithGravity('Location Access!.', Toast.LONG, Toast.CENTER);
             } else {
-                Alert.alert("Location Denied")
+                Toast.showWithGravity('Location Denied!.', Toast.LONG, Toast.CENTER);
             }
-            // await watchPositionAsync(
-            //     {
-            //         accuracy: Accuracy.BestForNavigation,
-            //         timeInterval: 1000,
-            //         distanceInterval: 10,
-            //     },
-            //     (location) => {
-            //         console.log(location);
-            //     }
-            // );
-            // );
         } catch (err) {
-            setErr(err);
+            console.log("This is an error", setErr)
+
         }
-    };
+        Geolocation.getCurrentPosition(location => console.log(location));
 
+    }
     useEffect(() => {
-        requestLocationPermission();
-    }, [])
-
+        requestLocationPermission()
+    })
     return (
         <View>
             <Text style={styles.Text} h2>Create a Track</Text>
             <Map />
-            {/* {err ? <Text>Please Enable location Services</Text> : null} */}
-            {/* <Button title="request permissions" onPress={requestLocationPermission} /> */}
+            <Spacer />
         </View>
 
     )
@@ -61,7 +56,7 @@ const CreateTrackScreen = () => {
 const styles = StyleSheet.create({
     Text: {
         textAlign: 'center',
-        marginTop: hp(5)
+        marginTop: hp(2)
     }
 })
 

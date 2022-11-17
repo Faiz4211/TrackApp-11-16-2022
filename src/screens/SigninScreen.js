@@ -6,13 +6,12 @@ import AuthForm from '../components/AuthFrom';
 import { Context } from '../context/AuthContext';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-
 const SigninScreen = ({ navigation }) => {
 
     const { state, signin } = useContext(Context)
 
     const Back = () => {
-        navigation.goBack('')
+        navigation.goBack()
     }
 
     return (

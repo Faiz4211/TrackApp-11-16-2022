@@ -1,44 +1,27 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, { useContext } from 'react';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Context as LocationContext } from '../context/LocationContext';
 
 const Map = () => {
-    let points = []
-    for (let i = 0; i < 20; i++) {
-        if (i % 2 === 0) {
-            points.push({
-                latitude: 37.33233 + i * 0.001,
-                longitude: -122.03121 + i * 0.001
-            })
-        } else {
-            points.push({
-                latitude: 37.33233 - i * 0.001,
-                longitude: -122.03121 - i * 0.001
-            })
-        }
+    const { state } = useContext(LocationContext);
+    console.log('This is a location state', state)
 
-    }
     return (
-        <View>
-            <MapView
-                style={styles.map}
-                initialregion={{
-                    // latitude: 24.8607,
-                    latitude: 37.33233,
-                    // longitude: 67.0011,
-                    longitude: -122.03121,
-                    latitudeDelta: 0.015,
-                    longitudeDelta: 0.0121,
-                }}
-            >
-                <Polyline
-                    coordinates={points}
-                />
-            </MapView>
-        </View>
-    )
-}
+        <MapView
+            style={styles.map}
+            initialRegion={{
+                latitude: 37.33233,
+                longitude: -122.03121,
+                // ...currentLocation.coords,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01
+            }}
+        >
+        </MapView>
+    );
+};
 
 const styles = StyleSheet.create({
     map: {
