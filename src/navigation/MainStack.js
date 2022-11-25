@@ -6,7 +6,5 @@ export default function (Stack) {
         <>
             <Stack.Screen name='Tab_Routes' component={TabRoutes} />
         </>
-
-
     )
 }

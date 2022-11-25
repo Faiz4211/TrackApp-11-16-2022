@@ -1,32 +1,40 @@
 import React, { useContext } from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
-import MapView, { Polyline } from 'react-native-maps';
+import { StyleSheet } from 'react-native';
+import MapView, { Circle, Marker } from 'react-native-maps';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Context as LocationContext } from '../context/LocationContext';
 
 const Map = () => {
-    const { state } = useContext(LocationContext);
-    console.log('This is a location state', state)
-
+    initialLocation = {
+        latitude: 24.860966,
+        longitude: 66.990501,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+    }
     return (
         <MapView
             style={styles.map}
             initialRegion={{
-                latitude: 37.33233,
-                longitude: -122.03121,
-                // ...currentLocation.coords,
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01
+                ...initialLocation,
             }}
         >
+            <Marker
+                coordinate={initialLocation}
+                pinColo={'red'}
+            />
+            {/* <Circle
+                center={initialLocation}
+                radius={40}
+                strokeColor="rgba(158 , 158, 255, 1.0)"
+                fillColor='rgba(158,158,255, 0.3)'
+            /> */}
         </MapView>
     );
 };
 
 const styles = StyleSheet.create({
     map: {
-        height: hp('30%'),
-        marginTop: hp(3)
+        height: hp('40%'),
+        marginTop: hp(3),
     }
 })
 

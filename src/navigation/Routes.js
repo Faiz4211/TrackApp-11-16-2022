@@ -7,15 +7,13 @@ import { Context as AuthContext } from '../context/AuthContext';
 
 const Stack = createNativeStackNavigator();
 
-function Routes() {
-    const { signup, signin, token } = useContext(AuthContext)
+function Routes({ navigation }) {
+    const { signup, signin } = useContext(AuthContext);
 
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-
                 {true ? <React.Fragment>{MainStack(Stack)}</React.Fragment> : <React.Fragment>{AuthStack(Stack)}</React.Fragment>}
-
             </Stack.Navigator>
         </NavigationContainer >
     );

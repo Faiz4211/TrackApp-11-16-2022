@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import trackerApi from '../api/tracker';
 import createDataContext from '../context/CreateDataContext';
-import MainStack from "../navigation/MainStack";
-import { navigate } from "../navigationRef";
+// import { navigate } from "../navigationRef";
+
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -35,12 +35,15 @@ const clearErrorMessage = (dispatch) => () => {
 const signup = (dispatch) => async ({ email, password }, callback) => {
   try {
     const response = await trackerApi.post("/signup", { email, password });
+    console.log(response)
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: "signin", payload: response.data.token });
-
-    navigate(MainStack(Stack))
+    callback()
 
   } catch (err) {
+
+    console.log(err);
+
     dispatch({
       type: "add_error",
       payload: "Email & Password already exist try new one!",

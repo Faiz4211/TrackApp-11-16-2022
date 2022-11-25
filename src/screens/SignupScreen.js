@@ -18,6 +18,7 @@ const SignupScreen = ({ navigation }) => {
                 headerText="SignUp for Tracker"
                 errorMessage={state.errorMessage}
                 submittButtonText="Sign Up"
+                navigation={navigation}
                 onSubmit={signup}
             />
 
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginBottom: hp(50),
-
     },
 })
 

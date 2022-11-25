@@ -5,7 +5,7 @@ import colors from '../globalStyles/GlobalColor';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import Spacer from './Spacer';
 
-const AuthFrom = ({ headerText, errorMessage, onSubmit, submittButtonText }) => {
+const AuthFrom = ({ headerText, errorMessage, onSubmit, submittButtonText, navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     return (
@@ -33,7 +33,7 @@ const AuthFrom = ({ headerText, errorMessage, onSubmit, submittButtonText }) => 
                 <Text style={styles.errorMessage}>{errorMessage}</Text>
             ) : null}
             <Spacer>
-                <Button title={submittButtonText} onPress={() => onSubmit({ email, password })} />
+                <Button title={submittButtonText} onPress={() => onSubmit({ email, password }, () => navigation.navigate('TrackCreate'))} />
             </Spacer>
         </>
 

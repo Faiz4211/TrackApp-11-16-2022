@@ -4,6 +4,6 @@ export default colors = {
     themeColor: "#4B5F44",
     blue: "#1F51FF",
     lightblue: "#0096FF",
-    grey: "#808080",
+    lightgrey: "#D3D3D3",
     red: '#FF0000'
 }
